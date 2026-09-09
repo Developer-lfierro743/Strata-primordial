@@ -1,0 +1,5 @@
+headers = strata_imgui.h
+package = strata.cimgui
+
+compilerOpts = -IC:/Users/luis/Dev/Strata/cimgui -IC:/Users/luis/Dev/Strata/cimgui/imgui -IC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop -IC:/VulkanSDK/1.4.357.0/Include
+linkerOpts = -LC:/Users/luis/Dev/Strata/cimgui/build -lcimgui

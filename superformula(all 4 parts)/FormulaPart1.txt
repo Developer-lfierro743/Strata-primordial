@@ -1,0 +1,68 @@
+This more ambitious in Minecraft alone notch idea(2009 cave game) he had vision for Minecraft but this more ambitious then the current Minecraft!!! And dethrone Hytale(hypixel studios and they are independent) as well! and possibly kill the model GaaS
+Name:Strata:Primordial
+Tech stack: 
+programing Language: Kotin kmp
+Framework: SDL3 + Vulkan (Vulkan-kotlin provided by Technoir Lab)with ECS (Entity Conponent System) and Monolith structure(coming soon ECS structure and better orginzation)
+Minecraft uses spaghetti code OOP(oritented-object-programing)
+Graphics: Vulkan
+Textures(no textures)
+Art Style:Matte colors(better)
+genre: Same as Minecraft 
+IDE of choice: Intelij idea and possibly vscode
+Developer: Novusforge studios 
+ideas future ideas for project :
+THE PURGE A event a special designed for  and with all the stuff
+including custom weapons including OVERPOWERED STUFF IS part of the core game(Basic,advanced,overpowered plus all the tiers will follow the pattern you must unlock all the basic stuff so you can move to the advanced stuff and the cycle loops in circles for overpowered)
+inspired by Sword4000(expert of surviving of purges, other stuff)
+including he has a Spanish channel sword4000(his main English Channel) Sword4000 en Español(his main Spanish channel)(which is not hooked on to his main channel its has his same content but in Español! plus i don't know how he does for his for that English is normal voice but the Spanish version of his voice is so weird plus the other characters)
+100 player Survive THE PURGE in Minecraft(SOCIAL EXPERIMENT)
+other stuff: greenstone(counterpart of redstone),etc furniture other stuff plus all the structures will be locked (as extra you can disable the world border(off or on) this is  your creativity is fully unleashed as extra do not enable creative mode and the future will try implement hardcore(one single life) During the purge: the rules of the game is disabled!(temp)
+1.stealing
+2.killing players
+3.greifing other rules are part of (game) this not limited
+(unlike Minecraft) And legendary weapons! other stuff And extra and maybe some creative mode(for a limited time only if do find a special staff you must craft it) and using real scientific names of the ores ferous,etc
+(Minecraft uses its non-scientific names of the ores why not?) the style of  will blow Minecraft's own textures out of the water plus its vibrant visuals and its happy ghast) with cutting edge(good shaders,lighting,etc) it could surpass Minecraft all this stuff and all notch original plans are added into the core game: Original plans of Minecraft some are created by Notch some are mine (Sky dimension,furniture,new ore/block greenstone,better AI,Self-Sustaining Villages, mob vote losers Which does not do anymore :(
+2x double hearts, better PvP(1.8+),Better XP Bar, Thirst bar, better crafting and tiers(which Minecraft does not have)
+(Basic,Advanced,Overpowered)(4x4 grid),better world generation(Perlin + simplex using FastnoiseLite),better memory management, better fps,
+No World border, No building height limit(UNLIMITED!),MODDING API(baked in the core Engine) here's even more information and even more factors will play with 
+will be included:
+1.the Minecraft trailer textures(the updates from Minecraft from the trailers)(texturepack called Barebones(integrated)(this will be scrapped not integrated)
+2.animations(not stiff Minecraft animations)(it must be created from scratch all the animations)
+3.perfect code(myth) or maintable code,testable,etc(not in the original game of Minecraft(which coincides with my plans for )
+4.universal unification(which coincides with my plans for )
+5.must have the same gameplay(not from Minecraft)(but its only one single version) there's a parity issue with Minecraft this it must be same gameplay how I have in the formula
+6.skin editor(single) 7.marketplace(free of microtransactions) for skins,etc
+8.better updates then Mojang/Microsoft
+9.sky dimension fully
+10. better inventory(50 inventory slots + 11 quickbar slots)
+11.all the ideas
+12.bugs fixing alot more
+13.player stuff must included
+14.other improvements
+15.no censorship possibly on or off profanity filter does can apply for servers except no singleplayer worlds respect the Privacy
+16.no hackers/cheaters(they ruin the fun)
+17.no CSAM(child Sexual Abuse Material) or adult content including the jenny mod(out and nope! by ex-creator of jenny mod Schnu @Schnurri_tv) which will ban it outright or we will have no choice to get a 2 triple layers(age verification and other stuff spicy stuff)
+This where a guardian angel called core SafetyGuardian is guardian angel of the whole game with customizable rules using for example SexualRule.java,including this will be part of the game including the modloader.java file this will handle the mods,etc and stopping that shit(csam,nudes, sexually stuff,including  jenny mod) stopping the game from loading stuff from the different modloaders from Minecraft(neoforge,forge,fabric,etc)
+And stopping the game from loading from old versions of Minecraft mods(1.2.3 to 1.21.11) including stopping my game from manual jarmodding(aka that stuff how Minecraft started in 2009) before the modloaders where introduced and me I am not allowing Minecraft mods into my game only if you want your mod into my game this are called Native mods you must port over your Minecraft mod into . And coming soon more verification checks for json(checking for any sus stuff,and other stuff like real guns are probithed😳),blocking assets(aka nudes,sexually,etc) and other checks to block the mod from loading,multiple layers of security(for loading a mod is not easy to get through my own game and note the core SafetyGuardian(it's not ai it's a not a machine learning it's a rules will be hardcoded and other stuff as the game evolves and more exploits,etc I will expand the list including grooming,etc) to protect the minors!
+the Core SafetyGuardian will be part of the chat system(of the game to stop grooming,etc) to stop more stuff!
+I am not going to block any normal stuff(you can chat normally) only the bad stuff I will block it (chat system) I want to combine to feel like a sandbox that stuff
+18.IGD(internet gaming disorder) a take break feature by Youtube(which Google bought it they added this and Google(your creators) implementation/well-being tool)
+19.full blown modding API!(no breaking updates and not going back in for playing old versions of Minecraft or )
+20.vertical slab
+21.infernite(primordial scraps + gold) oh infernite is a counterpart of netherite
+22.fix the single-threaded
+bottleneck(modern cpus have more CPUs cores and better stuff and to modest to threadrippers CPU's) and good rtx cards
+23. other stuff and have better moderation and lot more stuff!
+24.adding special identity intent Verfication(IIV) and adding 2 special a questionnare(called IIVQuestionnare.kts and a account system and a Creator Identity filter!) and a database(CommuityIncidentDatabase.kts files) and other stuff!
+(new tech developed by Novusforge studios)
+25.adding support for Mobile phones including using the and IMR(Immediate mode Rendering) and TBR(tile-based-rendering) other stuff!
+better vision than Mojang and even Hypixel studios(owned by simon collins laflamme) now To make the vision for this project  and Novusforge studios(my fictional company does not exist) vision for this game All that it could beat Minecraft? i think this a good formula i called formula!
+26. fixing lag problems with fixed timestep
+27.anticheat blocking cheats,hacks,etc
+28. encryption AES-256-GCM(rotating keys dyamic)
+29.Cryptographic Player Binding ID
+The price:$16.99 usd/regional currency
+Yep my game is not free it's paid! (Until indev stage)
+I will follow Minecraft only during the early stages of the game it will be free!(Limited time only) Until we reach indev(paid)
+only problem i don't have a palate to use Mojang don't use neon(colors, vibrant colors like more bright colors, etc) not Mojang own muted greens ,browns ,etc and i make a good interface with those colors for gui,etc
+for this i will make a some matte colors are vibrant colors and more bright colors,etc

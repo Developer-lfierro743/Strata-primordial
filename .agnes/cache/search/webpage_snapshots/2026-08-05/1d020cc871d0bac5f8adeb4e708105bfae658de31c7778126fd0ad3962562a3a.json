@@ -1,0 +1,22 @@
+{
+  "kind": "webpage_snapshot",
+  "url": "https://www.techtimes.com/articles/318457/20260616/minecraft-chaos-cubed-live-sulfur-caves-vulkan-renderer-hardcore-fix.htm",
+  "final_url": "https://www.techtimes.com/articles/318457/20260616/minecraft-chaos-cubed-live-sulfur-caves-vulkan-renderer-hardcore-fix.htm",
+  "status": 200,
+  "read_status": "ok",
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-08-06T03:45:06.491394900+00:00",
+  "title": "Minecraft Chaos Cubed Is Live: Sulfur Caves, Vulkan Renderer, Hardcore Fix",
+  "description": "Minecraft Chaos Cubed update is live today as Java Edition 26.2 and Bedrock Edition 26.30. The release adds Sulfur Caves, a block-absorbing mob with eight physics archetypes, a native Java friends",
+  "site_name": "Tech Times",
+  "published_at": "2026-06-16T08:44:34-04:00",
+  "source_type": "unknown",
+  "text": "Jeff Dean and Sanjay Ghemawat Depart Google to Co-Found Discovery Loop",
+  "quote_candidates": [
+    "Jeff Dean and Sanjay Ghemawat Depart Google to Co-Found Discovery Loop"
+  ],
+  "word_count": 11,
+  "truncated": false,
+  "blocked": false,
+  "source": "direct_http"
+}

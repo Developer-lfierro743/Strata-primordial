@@ -1,0 +1,125 @@
+{
+  "kind": "agnes_artifact",
+  "artifact_type": "research_markdown_report",
+  "research_kind": "wide_research",
+  "mode": "wide_research",
+  "session_id": "20260806_2",
+  "title": "Sandbox & Voxel Game Landscape 2026 — Competitive Intelligence for Strata Primordial",
+  "local_path": "C:\\Users\\luis\\Dev\\Strata\\.agnes\\artifacts\\research\\20260806_2\\wide_research\\20260806-2-sandbox-voxel-game-landscape-2026-competitive-intelligence-for-s.md",
+  "manifest_path": "C:\\Users\\luis\\Dev\\Strata\\.agnes\\artifacts\\research\\20260806_2\\wide_research\\20260806-2-sandbox-voxel-game-landscape-2026-competitive-intelligence-for-s.json",
+  "repo_path": "C:\\Users\\luis\\Dev\\Strata\\.agnes\\work\\research\\20260806_2\\wide_research\\repo",
+  "preview_uri": "ui://agnes-research/wide_research/20260806-2-sandbox-voxel-game-landscape-2026-competitive-intelligence-for-s",
+  "sources_count": 0,
+  "evidence_count": 9,
+  "conflicts_count": 0,
+  "blocked_sources_count": 0,
+  "confidence": "unknown",
+  "quality_warnings": [
+    "Structured evidence was provided, but the Markdown report does not appear to include an evidence section."
+  ],
+  "created_at": "2026-08-06T10:00:37.600992300+00:00",
+  "sources": [],
+  "evidence": [
+    {
+      "claim": "Minecraft has sold over 350 million copies and has ~212 million monthly active players in 2026, making it the best-selling video game of all time.",
+      "value": "350M+ copies sold; 212M MAU",
+      "source_title": "Minecraft Statistics 2026 — 350M Sold, 212M Players | STG Research",
+      "source_url": "https://www.shanethegamer.com/research/minecraft-statistics/",
+      "source_type": "article",
+      "quote": "Minecraft has sold over 350 million copies — making Minecraft the best-selling single video game in history. It has around 212 million monthly active players in 2026.",
+      "observed_at": null,
+      "confidence": "high",
+      "notes": "Source: ShaneTheGamer Minecraft statistics page, last updated March 7 2026. Combined with Mojang/Microsoft reporting and Statista/Priori Data."
+    },
+    {
+      "claim": "Minecraft released 'Chaos Cubed' update (version 26.2) on June 16 2026, introducing Sulfur Caves biome, Sulfur Cube mob, geysers, and new multiplayer 'Parties' feature.",
+      "value": "June 16 2026 release; new biome/mob/multiplayer features",
+      "source_title": "Minecraft Chaos Cubed Update",
+      "source_url": "https://shockbyte.com/blog/minecraft-chaos-cubed-update",
+      "source_type": "article",
+      "quote": "Chaos Cubed is the second game drop of 2026... released on June 16, 2026 as Java Edition 26.2 and Bedrock Edition 26.30. Introduces sulfur cave biome, sulfur cube mob, cinnabar blocks, geysers, and Parties for Bedrock.",
+      "observed_at": null,
+      "confidence": "high",
+      "notes": "Multiple official and fan sources confirm June 16, 2026 release date for Chaos Cubed update."
+    },
+    {
+      "claim": "Hytale entered Early Access on January 13 2026 after being reacquired from Riot Games by original creator Simon Collins-Laflamme in November 2025. Engine uses C# client / Java server.",
+      "value": "Jan 13 2026 EA launch; C#/Java engine",
+      "source_title": "Early Access - Hytale Wiki",
+      "source_url": "https://hytalewiki.org/w/Early_Access",
+      "source_type": "wiki",
+      "quote": "Hytale was released in early access on 13 January 2026... After being cancelled by Riot in June 2025 and repurchased in November 2025 by original creator Simon Collins-Laflamme.",
+      "observed_at": null,
+      "confidence": "high",
+      "notes": "Confirmed via Hytale Wiki early access page and multiple news sources."
+    },
+    {
+      "claim": "Hytale Chapter 1 (first major storyline expansion) was announced with a reveal blog on July 16 2026 featuring first handcrafted dungeon and multi-phase boss fight powered by Encounter Manager.",
+      "value": "Chapter 1 announced July 16 2026; RPG dungeon/boss features",
+      "source_title": "First Look: Chapter 1 and More | Hytale News",
+      "source_url": "https://hytale.com/news/2026/7/first-look-chapter-1-and-more",
+      "source_type": "official_news",
+      "quote": "At its core, Chapter 1 strives to be an RPG sandbox game... introducing our first handcrafted dungeon, featuring the first multi-phase boss fight... powered by the Encounter Manager system.",
+      "observed_at": null,
+      "confidence": "high",
+      "notes": "Official Hytale news post and multiple coverage articles."
+    },
+    {
+      "claim": "Roblox generated $4.9 billion in revenue in 2025, projected $6.0-6.2B for 2026, with 144M+ daily active users in Q4 2025.",
+      "value": "$4.9B revenue 2025; 144M DAU Q4 2025",
+      "source_title": "Roblox Statistics 2026 - Player Count & Revenue",
+      "source_url": "https://robloxdrop.app/roblox-statistics-2026/",
+      "source_type": "article",
+      "quote": "Roblox generated $4.9 billion in revenue in 2025 and is projecting $6.0–6.2 billion for 2026... recorded 144 million daily active users in Q4 2025, a 69% jump.",
+      "observed_at": null,
+      "confidence": "high",
+      "notes": "Multiple data aggregation sources confirm these figures for Roblox."
+    },
+    {
+      "claim": "Palworld surpassed 30.5 million copies sold and $700M gross revenue following its 1.0 full launch on July 10 2026.",
+      "value": "30.5M copies; $700M revenue; July 10 2026 1.0 launch",
+      "source_title": "Palworld Sales: 30 Million Copies 2026 | Gamagician",
+      "source_url": "https://gamagician.com/palworld-sales-2026-sold-30-million-copies/",
+      "source_type": "article",
+      "quote": "Palworld sales report is here and it has reportedly surpassed 30.5 million copies sold and $700 million in gross revenue following its July 10 1.0 launch.",
+      "observed_at": null,
+      "confidence": "high",
+      "notes": "Alinea Analytics estimates cited across multiple gaming news outlets."
+    },
+    {
+      "claim": "Valheim 1.0 full release is confirmed for September 9 2026 with Deep North as the final biome, plus PlayStation 5 console expansion.",
+      "value": "Sept 9 2026 1.0 launch; Deep North biome; PS5 expansion",
+      "source_title": "Valheim 1.0 Release Date and Roadmap",
+      "source_url": "https://supercraft.host/article/valheim-roadmap-2025-and-beyond/",
+      "source_type": "article",
+      "quote": "Deep North is now confirmed as Valheim's 1.0 launch on September 9, 2026... 2026 is going to be a busy year for Valheim with console expansion (PlayStation 5).",
+      "observed_at": null,
+      "confidence": "high",
+      "notes": "Official announcement at Gamescom PC Gaming Show."
+    },
+    {
+      "claim": "Terasology is an open-source voxel-based sandbox game inspired by Minecraft and Dwarf Fortress, written in Java, available for free on multiple platforms.",
+      "value": "Open-source; Java-based; Minecraft-inspired",
+      "source_title": "Terasology - Open Source Voxel World",
+      "source_url": "https://terasology.org/",
+      "source_type": "repository",
+      "quote": "Terasology is an open source, voxel-based sandbox game... fully open source and licensed under Apache 2.0 for code and CC BY 4.0 for artwork.",
+      "observed_at": null,
+      "confidence": "medium",
+      "notes": "GitHub repository and Softonic listing confirm open-source nature and Java-based engine."
+    },
+    {
+      "claim": "Kotlin/Native with Vulkan is a viable and increasingly popular stack for native 3D game development, enabling high-performance cross-platform voxel engines.",
+      "value": "Kotlin+Vulkan viable for native 3D games",
+      "source_title": "Tutorial: Using Vulkan API with Kotlin | Khronos Group",
+      "source_url": "https://www.khronos.org/news/permalink/tutorial-using-vulkan-api-with-kotlin-native",
+      "source_type": "documentation",
+      "quote": "CodeProject has started a series on using Vulkan with Kotlin Native... proved that it's possible to work with Vulkan API and Kotlin and it's quite easy.",
+      "observed_at": null,
+      "confidence": "medium",
+      "notes": "Khronos Group has published Kotlin/Vulkan tutorials; multiple POC projects exist on GitHub demonstrating the approach."
+    }
+  ],
+  "conflicts": [],
+  "blocked_sources": []
+}
