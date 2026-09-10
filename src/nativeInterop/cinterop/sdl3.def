@@ -2,5 +2,5 @@ headers = SDL3/SDL.h SDL3/SDL_vulkan.h
 headerFilter = SDL3/SDL.h SDL3/SDL_vulkan.h
 libraryPaths = /usr/lib/x86_64-linux-gnu /usr/lib/aarch64-linux-gnu /usr/local/lib
 libraries = SDL3
-compilerOpts.linux = -I/usr/include/SDL3 -I/usr/local/include/SDL3 `pkg-config --cflags sdl3 2>/dev/null || echo ""`
+compilerOpts.linux = -I/usr/include/SDL3 -I/usr/local/include/SDL3
 linkerOpts.linux = -lSDL3
