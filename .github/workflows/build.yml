@@ -33,12 +33,17 @@ jobs:
       - name: Install ARM64 cross-compile dependencies
         run: |
           sudo apt-get update
+          sudo dpkg --add-architecture arm64
+          sudo apt-get update
           sudo apt-get install -y libvulkan-dev cmake ninja-build pkg-config \
             libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxinerama-dev \
             libxi-dev libxxf86vm-dev libxss-dev libwayland-dev libxkbcommon-dev \
             libudev-dev libdrm-dev libgbm-dev \
-            gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
-          # Cross-compile SDL3 for ARM64
+            gcc-aarch64-linux-gnu g++-aarch64-linux-gnu \
+            libx11-dev:arm64 libxext-dev:arm64 libxrandr-dev:arm64 libxcursor-dev:arm64 libxinerama-dev:arm64 \
+            libxi-dev:arm64 libxxf86vm-dev:arm64 libxss-dev:arm64 libwayland-dev:arm64 libxkbcommon-dev:arm64 \
+            libudev-dev:arm64 libdrm-dev:arm64 libgbm-dev:arm64
+          # Cross-compile SDL3 for ARM64 (with X11/Wayland from host)
           git clone --branch release-3.2.6 --depth 1 https://github.com/libsdl-org/SDL.git /tmp/SDL
           mkdir -p /tmp/SDL/build-arm64
           cd /tmp/SDL/build-arm64
@@ -48,7 +53,8 @@ jobs:
             -DCMAKE_SYSTEM_NAME=Linux \
             -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
             -DSDL_SHARED=ON -DSDL_STATIC=OFF \
-            -DCMAKE_INSTALL_PREFIX=/usr/aarch64-linux-gnu
+            -DCMAKE_INSTALL_PREFIX=/usr/aarch64-linux-gnu \
+            -DSDL_X11=OFF -DSDL_WAYLAND=OFF
           cmake --build . --parallel $(nproc)
           sudo cmake --install .
           sudo ldconfig
