@@ -39,9 +39,6 @@ kotlin {
             create("sdl3") {
                 definitionFile.set(project.file("src/nativeInterop/cinterop/sdl3.def"))
             }
-            create("cimgui") {
-                definitionFile.set(project.file("src/nativeInterop/cinterop/cimgui.def"))
-            }
             create("webview") {
                 definitionFile.set(project.file("src/nativeInterop/cinterop/webview.def"))
             }
@@ -64,6 +61,9 @@ kotlin {
                     "-LC:/VulkanSDK/1.4.357.0/Lib", "-lvulkan-1",
                     "-LC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop", "-l:libvma.a"
                 )
+            }
+            create("cimgui") {
+                definitionFile.set(project.file("src/nativeInterop/cinterop/cimgui.def"))
             }
         }
     }
