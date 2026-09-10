@@ -1,5 +1,0 @@
-headers = strata_webview.h
-package = strata.webview
-
-compilerOpts = -IC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop
-linkerOpts = -LC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop -lstrata_webview
