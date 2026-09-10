@@ -1,22 +1,13 @@
 [versions]
-agp = "9.3.1"
 kotlin = "2.4.20"
 vulkanKotlin = "1.4.350-1"
 coroutines = "1.11.0"
-cryptography = "0.6.0"
 serialization = "1.7.3"
-androidCompileSdk = "35"
-androidMinSdk = "24"
-androidTargetSdk = "35"
 
 [libraries]
-vulkan-kotlin = { module = "io.technoirlab.vulkan:vulkan-kotlin", version.ref = "vulkanKotlin" }
-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-cryptography-core = { module = "dev.whyoleg.cryptography:cryptography-core", version.ref = "cryptography" }
-cryptography-provider-optimal = { module = "dev.whyoleg.cryptography:cryptography-provider-optimal", version.ref = "cryptography" }
-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+vulkan-kotlin = { group = "io.technoirlab.vulkan", name = "vulkan-kotlin", version.ref = "vulkanKotlin" }
+coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
 
 [plugins]
-androidApplication = { id = "com.android.application", version.ref = "agp" }
-androidKotlinMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
-kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
