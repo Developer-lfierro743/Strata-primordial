@@ -30,18 +30,16 @@ jobs:
         with:
           gradle-version: '9.6.0'
 
-      - name: Install dependencies
+      - name: Install ARM64 dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libvulkan-dev cmake ninja-build pkg-config \
-            libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxinerama-dev \
-            libxi-dev libxxf86vm-dev libxss-dev libwayland-dev libxkbcommon-dev \
-            libudev-dev libdrm-dev libgbm-dev
-          # Build SDL3 from source (not in Ubuntu repos yet)
-          git clone --branch release-3.2.6 --depth 1 https://github.com/libsdl-org/SDL.git /tmp/SDL
-          cmake -S /tmp/SDL -B /tmp/SDL/build -DCMAKE_BUILD_TYPE=Release -DSDL_SHARED=ON -DSDL_STATIC=OFF
-          cmake --build /tmp/SDL/build --parallel $(nproc)
-          sudo cmake --install /tmp/SDL/build
+          sudo dpkg --add-architecture arm64
+          sudo apt-get update
+          sudo apt-get install -y libvulkan-dev:arm64 cmake ninja-build pkg-config \
+            libx11-dev:arm64 libxext-dev:arm64 libxrandr-dev:arm64 libxcursor-dev:arm64 libxinerama-dev:arm64 \
+            libxi-dev:arm64 libxxf86vm-dev:arm64 libxss-dev:arm64 libwayland-dev:arm64 libxkbcommon-dev:arm64 \
+            libudev-dev:arm64 libdrm-dev:arm64 libgbm-dev:arm64 \
+            libsdl3-dev:arm64
           sudo ldconfig
 
       - name: Build linuxArm64 release
@@ -83,14 +81,14 @@ jobs:
         with:
           gradle-version: '9.6.0'
 
-      - name: Install dependencies
+      - name: Install x64 dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y libvulkan-dev cmake ninja-build pkg-config \
             libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxinerama-dev \
             libxi-dev libxxf86vm-dev libxss-dev libwayland-dev libxkbcommon-dev \
             libudev-dev libdrm-dev libgbm-dev
-          # Build SDL3 from source (not in Ubuntu repos yet)
+          # Build SDL3 from source for x86_64 (not in Ubuntu repos yet)
           git clone --branch release-3.2.6 --depth 1 https://github.com/libsdl-org/SDL.git /tmp/SDL
           cmake -S /tmp/SDL -B /tmp/SDL/build -DCMAKE_BUILD_TYPE=Release -DSDL_SHARED=ON -DSDL_STATIC=OFF
           cmake --build /tmp/SDL/build --parallel $(nproc)
