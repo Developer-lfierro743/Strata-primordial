@@ -28,3 +28,20 @@ dist/
 # Logs
 *.log
 logs/
+
+# Hidden folders / local tooling
+.freebuff/
+.agnes/
+.kotlin/
+.idea/
+
+# Misc
+*.kexe
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+strata_webview.dll
+strata-prototype.exe
+strata-prototype.kexe
