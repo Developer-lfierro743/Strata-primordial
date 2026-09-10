@@ -1,0 +1,122 @@
+name: Build Strata Primordial
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+  workflow_dispatch:
+
+jobs:
+  build-linux-arm64:
+    name: Build linuxArm64
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.6.0'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libsdl3-dev libvulkan-dev cmake
+
+      - name: Build linuxArm64 release
+        run: ./gradlew linkReleaseExecutableLinuxArm64
+
+      - name: Upload linuxArm64 binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: strata-linux-arm64
+          path: build/bin/linuxArm64/releaseExecutable/strata-prototype.kexe
+          retention-days: 30
+
+      - name: Create release on tag
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/bin/linuxArm64/releaseExecutable/strata-prototype.kexe
+          generate_release_notes: true
+
+  build-linux-x64:
+    name: Build linuxX64
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.6.0'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libsdl3-dev libvulkan-dev cmake
+
+      - name: Build linuxX64 release
+        run: ./gradlew linkReleaseExecutableLinuxX64
+
+      - name: Upload linuxX64 binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: strata-linux-x64
+          path: build/bin/linuxX64/releaseExecutable/strata-prototype.kexe
+          retention-days: 30
+
+  build-windows:
+    name: Build Windows (mingwX64)
+    runs-on: windows-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.6.0'
+
+      - name: Install SDL3 (via vcpkg)
+        run: |
+          git clone https://github.com/microsoft/vcpkg.git
+          ./vcpkg/bootstrap-vcpkg.bat
+          ./vcpkg/vcpkg install sdl3:x64-windows vulkan:x64-windows
+
+      - name: Build Windows release
+        run: ./gradlew.bat linkReleaseExecutableDesktop
+
+      - name: Upload Windows binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: strata-windows-x64
+          path: build/bin/desktop/releaseExecutable/strata-prototype.exe
+          retention-days: 30
