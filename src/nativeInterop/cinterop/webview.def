@@ -1,6 +1,0 @@
-headers = webview.h
-headerFilter = webview.h
-libraryPaths = /usr/lib/x86_64-linux-gnu /usr/lib/aarch64-linux-gnu
-libraries = webview
-compilerOpts.linux = -I/usr/include
-linkerOpts.linux = -lwebview

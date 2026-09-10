@@ -62,9 +62,6 @@ kotlin {
                     "-LC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop", "-l:libvma.a"
                 )
             }
-            create("cimgui") {
-                definitionFile.set(project.file("src/nativeInterop/cinterop/cimgui.def"))
-            }
         }
     }
 
