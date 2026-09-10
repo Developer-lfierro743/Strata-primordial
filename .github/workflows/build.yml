@@ -33,7 +33,13 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libsdl3-dev libvulkan-dev cmake
+          sudo apt-get install -y libvulkan-dev cmake ninja-build pkg-config
+          # Build SDL3 from source (not in Ubuntu repos yet)
+          git clone --branch release-3.2.6 --depth 1 https://github.com/libsdl-org/SDL.git /tmp/SDL
+          cmake -S /tmp/SDL -B /tmp/SDL/build -DCMAKE_BUILD_TYPE=Release -DSDL_SHARED=ON -DSDL_STATIC=OFF
+          cmake --build /tmp/SDL/build --parallel $(nproc)
+          sudo cmake --install /tmp/SDL/build
+          sudo ldconfig
 
       - name: Build linuxArm64 release
         run: ./gradlew linkReleaseExecutableLinuxArm64
@@ -77,7 +83,13 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libsdl3-dev libvulkan-dev cmake
+          sudo apt-get install -y libvulkan-dev cmake ninja-build pkg-config
+          # Build SDL3 from source (not in Ubuntu repos yet)
+          git clone --branch release-3.2.6 --depth 1 https://github.com/libsdl-org/SDL.git /tmp/SDL
+          cmake -S /tmp/SDL -B /tmp/SDL/build -DCMAKE_BUILD_TYPE=Release -DSDL_SHARED=ON -DSDL_STATIC=OFF
+          cmake --build /tmp/SDL/build --parallel $(nproc)
+          sudo cmake --install /tmp/SDL/build
+          sudo ldconfig
 
       - name: Build linuxX64 release
         run: ./gradlew linkReleaseExecutableLinuxX64
