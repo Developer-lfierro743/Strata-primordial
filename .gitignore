@@ -35,6 +35,9 @@ logs/
 .kotlin/
 .idea/
 
+# THE SAUCE - Proprietary game formula (NEVER COMMIT)
+superformula(all 4 parts)/
+
 # Misc
 *.kexe
 *.exe
