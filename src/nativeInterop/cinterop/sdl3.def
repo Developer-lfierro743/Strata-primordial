@@ -1,5 +1,2 @@
 headers = strata_sdl3_wrapper.h
 package = strata.sdl3
-
-compilerOpts = -IC:/Users/luis/Dev/SDL-main/include -IC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop -IC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop/strata3d -IC:/VulkanSDK/1.4.357.0/Include -IC:/Users/luis/Dev/VMA-master/include -msse4.2
-linkerOpts = -LC:/Users/luis/Dev/SDL-main/build-vs/Release -lSDL3 -LC:/VulkanSDK/1.4.357.0/Lib -lvulkan-1 -LC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop -l:libvma.a
