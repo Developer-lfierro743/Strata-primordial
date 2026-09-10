@@ -1,0 +1,20 @@
+{
+  "kind": "webpage_snapshot",
+  "url": "https://www.rockpapershotgun.com/hytales-out-now-and-its-devs-are-advising-those-suffering-download-issues-or-errors-to-keep-plugging-away",
+  "final_url": "https://www.rockpapershotgun.com/hytales-out-now-and-its-devs-are-advising-those-suffering-download-issues-or-errors-to-keep-plugging-away",
+  "status": 200,
+  "read_status": "blocked",
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-08-06T03:47:36.430216700+00:00",
+  "title": "Hytale's out now and its devs are advising those suffering download issues or errors to keep plugging away | Rock Paper Shotgun",
+  "description": "Hytale has released and its devs have issued advice in response to many players running into issues with stuck downloads or launcher errors.",
+  "site_name": "Rock Paper Shotgun",
+  "published_at": "2026-01-13T15:58:38.566578+00:00",
+  "source_type": "unknown",
+  "text": "",
+  "quote_candidates": [],
+  "word_count": 0,
+  "truncated": false,
+  "blocked": true,
+  "source": "direct_http"
+}

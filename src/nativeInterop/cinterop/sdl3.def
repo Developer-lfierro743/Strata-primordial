@@ -1,6 +1,5 @@
-headers = SDL3/SDL.h SDL3/SDL_vulkan.h
-headerFilter = SDL3/SDL.h SDL3/SDL_vulkan.h
-libraryPaths = /usr/lib/x86_64-linux-gnu /usr/lib/aarch64-linux-gnu /usr/local/lib
-libraries = SDL3
-compilerOpts.linux = -I/usr/include/SDL3 -I/usr/local/include/SDL3
-linkerOpts.linux = -lSDL3 -lm -lpthread
+headers = strata_sdl3_wrapper.h
+package = strata.sdl3
+
+compilerOpts = -IC:/Users/luis/Dev/SDL-main/include -IC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop -IC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop/strata3d -IC:/VulkanSDK/1.4.357.0/Include -IC:/Users/luis/Dev/VMA-master/include -msse4.2
+linkerOpts = -LC:/Users/luis/Dev/SDL-main/build-vs/Release -lSDL3 -LC:/VulkanSDK/1.4.357.0/Lib -lvulkan-1 -LC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop -l:libvma.a

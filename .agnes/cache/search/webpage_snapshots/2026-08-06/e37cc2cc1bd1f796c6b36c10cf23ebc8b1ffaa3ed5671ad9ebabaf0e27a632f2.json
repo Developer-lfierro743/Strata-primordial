@@ -1,0 +1,20 @@
+{
+  "kind": "webpage_snapshot",
+  "url": "https://en.wikipedia.org/wiki/Hytale",
+  "final_url": "https://en.wikipedia.org/wiki/Hytale",
+  "status": 200,
+  "read_status": "blocked",
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-08-06T09:59:14.821811900+00:00",
+  "title": "Hytale - Wikipedia",
+  "description": "",
+  "site_name": null,
+  "published_at": null,
+  "source_type": "encyclopedia",
+  "text": "",
+  "quote_candidates": [],
+  "word_count": 0,
+  "truncated": false,
+  "blocked": true,
+  "source": "direct_http"
+}

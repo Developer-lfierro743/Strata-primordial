@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strata Mod Editor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            overflow: hidden;
+        }
+        
+        #app {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        /* ── Title Bar ── */
+        #titlebar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 16px;
+            background: linear-gradient(180deg, #2d2d30 0%, #252526 100%);
+            border-bottom: 1px solid #3c3c3c;
+            user-select: none;
+        }
+        
+        #titlebar .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        #titlebar .logo-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #0078d4 0%, #00bcf2 100%);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            color: white;
+        }
+        
+        #titlebar .logo-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #cccccc;
+        }
+        
+        #titlebar .tabs {
+            display: flex;
+            gap: 2px;
+        }
+        
+        #titlebar .tab {
+            padding: 6px 16px;
+            background: #2d2d30;
+            border: 1px solid #3c3c3c;
+            border-radius: 4px 4px 0 0;
+            cursor: pointer;
+            font-size: 12px;
+            color: #969696;
+            transition: all 0.2s;
+        }
+        
+        #titlebar .tab:hover {
+            background: #383838;
+            color: #ffffff;
+        }
+        
+        #titlebar .tab.active {
+            background: #1e1e1e;
+            color: #ffffff;
+            border-bottom-color: #1e1e1e;
+        }
+        
+        #titlebar .actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        #titlebar .action-btn {
+            padding: 6px 12px;
+            background: #0e639c;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        #titlebar .action-btn:hover {
+            background: #1177bb;
+        }
+        
+        #titlebar .action-btn.success {
+            background: #388a34;
+        }
+        
+        #titlebar .action-btn.success:hover {
+            background: #45a641;
+        }
+        
+        /* ── Toolbar ── */
+        #toolbar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 16px;
+            background: #252526;
+            border-bottom: 1px solid #3c3c3c;
+        }
+        
+        #toolbar .tool-group {
+            display: flex;
+            gap: 4px;
+        }
+        
+        #toolbar .tool-btn {
+            padding: 4px 8px;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            color: #cccccc;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        #toolbar .tool-btn:hover {
+            background: #2a2d2e;
+            border-color: #3c3c3c;
+        }
+        
+        #toolbar .separator {
+            width: 1px;
+            height: 20px;
+            background: #3c3c3c;
+        }
+        
+        #toolbar .file-info {
+            margin-left: auto;
+            font-size: 11px;
+            color: #858585;
+        }
+        
+        /* ── Editor Container ── */
+        #editor-container {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+        
+        /* ── Sidebar ── */
+        #sidebar {
+            width: 260px;
+            background: #252526;
+            border-right: 1px solid #3c3c3c;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        #sidebar .sidebar-header {
+            padding: 10px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #cccccc;
+            border-bottom: 1px solid #3c3c3c;
+        }
+        
+        #sidebar .file-tree {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px 0;
+        }
+        
+        #sidebar .file-tree-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #cccccc;
+            transition: background 0.15s;
+        }
+        
+        #sidebar .file-tree-item:hover {
+            background: #2a2d2e;
+        }
+        
+        #sidebar .file-tree-item.active {
+            background: #37373d;
+        }
+        
+        #sidebar .file-tree-item .icon {
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        #sidebar .file-tree-item .icon.folder {
+            color: #dcb67a;
+        }
+        
+        #sidebar .file-tree-item .icon.file {
+            color: #569cd6;
+        }
+        
+        #sidebar .file-tree-item .icon.file.js {
+            color: #f7df1e;
+        }
+        
+        #sidebar .file-tree-item .icon.file.json {
+            color: #9bbbdc;
+        }
+        
+        /* ── Editor ── */
+        #editor {
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        /* ── Status Bar ── */
+        #statusbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px 16px;
+            background: #007acc;
+            color: white;
+            font-size: 12px;
+        }
+        
+        #statusbar .status-left,
+        #statusbar .status-right {
+            display: flex;
+            gap: 16px;
+        }
+        
+        #statusbar .status-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        /* ── Terminal Panel ── */
+        #terminal-panel {
+            height: 150px;
+            background: #1e1e1e;
+            border-top: 1px solid #3c3c3c;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #terminal-panel .terminal-header {
+            display: flex;
+            align-items: center;
+            padding: 6px 12px;
+            background: #252526;
+            border-bottom: 1px solid #3c3c3c;
+        }
+        
+        #terminal-panel .terminal-tabs {
+            display: flex;
+            gap: 2px;
+        }
+        
+        #terminal-panel .terminal-tab {
+            padding: 4px 12px;
+            font-size: 12px;
+            color: #969696;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        #terminal-panel .terminal-tab.active {
+            background: #37373d;
+            color: #ffffff;
+        }
+        
+        #terminal-panel .terminal-content {
+            flex: 1;
+            padding: 8px 12px;
+            font-family: 'Cascadia Code', 'Consolas', monospace;
+            font-size: 13px;
+            color: #cccccc;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        
+        /* ── Scrollbar Styling ── */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1e1e1e;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #424242;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555555;
+        }
+        
+        /* ── Loading State ── */
+        #loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #1e1e1e;
+            z-index: 1000;
+        }
+        
+        #loading .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #3c3c3c;
+            border-top-color: #0078d4;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        #loading .text {
+            margin-top: 16px;
+            font-size: 14px;
+            color: #858585;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Title Bar -->
+        <div id="titlebar">
+            <div class="logo">
+                <div class="logo-icon">S</div>
+                <span class="logo-text">Strata Mod Editor</span>
+            </div>
+            <div class="tabs">
+                <div class="tab active" data-file="mod.js">mod.js</div>
+                <div class="tab" data-file="mod.json">mod.json</div>
+            </div>
+            <div class="actions">
+                <button class="action-btn" onclick="formatCode()">Format</button>
+                <button class="action-btn success" onclick="saveFile()">Save</button>
+            </div>
+        </div>
+        
+        <!-- Toolbar -->
+        <div id="toolbar">
+            <div class="tool-group">
+                <button class="tool-btn" onclick="undo()" title="Undo (Ctrl+Z)">↩ Undo</button>
+                <button class="tool-btn" onclick="redo()" title="Redo (Ctrl+Y)">↪ Redo</button>
+            </div>
+            <div class="separator"></div>
+            <div class="tool-group">
+                <button class="tool-btn" onclick="cutSelection()" title="Cut">✂ Cut</button>
+                <button class="tool-btn" onclick="copySelection()" title="Copy">📋 Copy</button>
+                <button class="tool-btn" onclick="pasteClipboard()" title="Paste">📌 Paste</button>
+            </div>
+            <div class="separator"></div>
+            <div class="tool-group">
+                <button class="tool-btn" onclick="findReplace()" title="Find & Replace (Ctrl+H)">🔍 Find</button>
+            </div>
+            <div class="separator"></div>
+            <div class="tool-group">
+                <button class="tool-btn" onclick="toggleMinimap()">🗺 Minimap</button>
+                <button class="tool-btn" onclick="toggleWordWrap()">↩ Word Wrap</button>
+            </div>
+            <div class="file-info">
+                <span id="file-path">mods/example_mod/mod.js</span>
+                <span id="cursor-position">Ln 1, Col 1</span>
+            </div>
+        </div>
+        
+        <!-- Editor Container -->
+        <div id="editor-container">
+            <!-- Sidebar -->
+            <div id="sidebar">
+                <div class="sidebar-header">📁 Explorer</div>
+                <div class="file-tree">
+                    <div class="file-tree-item folder">
+                        <span class="icon folder">📁</span>
+                        <span>mods</span>
+                    </div>
+                    <div class="file-tree-item folder" style="padding-left: 24px;">
+                        <span class="icon folder">📁</span>
+                        <span>example_mod</span>
+                    </div>
+                    <div class="file-tree-item active" style="padding-left: 40px;" data-file="mod.js">
+                        <span class="icon file js">📄</span>
+                        <span>mod.js</span>
+                    </div>
+                    <div class="file-tree-item" style="padding-left: 40px;" data-file="mod.json">
+                        <span class="icon file json">📄</span>
+                        <span>mod.json</span>
+                    </div>
+                    <div class="file-tree-item" style="padding-left: 40px;" data-file="README.md">
+                        <span class="icon file">📄</span>
+                        <span>README.md</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Monaco Editor -->
+            <div id="editor"></div>
+        </div>
+        
+        <!-- Terminal Panel -->
+        <div id="terminal-panel">
+            <div class="terminal-header">
+                <div class="terminal-tabs">
+                    <div class="terminal-tab active">Output</div>
+                    <div class="terminal-tab">Problems</div>
+                    <div class="terminal-tab">Debug Console</div>
+                </div>
+            </div>
+            <div class="terminal-content" id="terminal-output">
+[2026-08-06 12:00:00] Strata Mod Editor initialized
+[2026-08-06 12:00:00] Monaco Editor loaded successfully
+[2026-08-06 12:00:00] Ready to edit mod files...
+            </div>
+        </div>
+        
+        <!-- Status Bar -->
+        <div id="statusbar">
+            <div class="status-left">
+                <span class="status-item">🔀 main</span>
+                <span class="status-item">✓ 0 problems</span>
+                <span class="status-item" id="lint-status">✓ No lint errors</span>
+            </div>
+            <div class="status-right">
+                <span class="status-item" id="language-mode">JavaScript</span>
+                <span class="status-item">UTF-8</span>
+                <span class="status-item">LF</span>
+                <span class="status-item">Spaces: 4</span>
+                <span class="status-item">Strata Modding API v0.1.0</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Loading Overlay -->
+    <div id="loading">
+        <div class="spinner"></div>
+        <div class="text">Loading Monaco Editor...</div>
+    </div>
+    
+    <!-- Monaco Editor Loader -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+    
+    <script>
+        // ── File Store ──
+        const files = {
+            'mod.js': {
+                content: `/**
+ * Strata Mod Example
+ * 
+ * This is a basic mod template for Strata: Primordial.
+ * Edit this file to create your own mod functionality.
+ */
+
+// Mod metadata
+const MOD_NAME = "Example Mod";
+const MOD_VERSION = "1.0.0";
+const MOD_AUTHOR = "Strata Developer";
+
+/**
+ * Called when the mod is loaded.
+ * Use this to initialize your mod's state.
+ */
+function onModLoad() {
+    console.log(\`[\${MOD_NAME}] Mod loaded!\`);
+    
+    // Register event handlers
+    registerEvents();
+    
+    // Initialize mod settings
+    loadSettings();
+}
+
+/**
+ * Called when the mod is unloaded.
+ * Clean up any resources here.
+ */
+function onModUnload() {
+    console.log(\`[\${MOD_NAME}] Mod unloaded.\`);
+}
+
+/**
+ * Register event handlers for the mod.
+ */
+function registerEvents() {
+    // Example: Listen for player join events
+    Events.on('playerJoin', (event) => {
+        console.log(\`Player joined: \${event.player.name}\`);
+    });
+    
+    // Example: Listen for block break events
+    Events.on('blockBreak', (event) => {
+        const { block, player } = event;
+        console.log(\`\${player.name} broke \${block.type}\`);
+    });
+}
+
+/**
+ * Load mod settings from config.
+ */
+function loadSettings() {
+    // Load configuration from mod.json
+    const config = Mod.getConfig();
+    
+    if (config.debug) {
+        console.log(\`[\${MOD_NAME}] Debug mode enabled\`);
+    }
+}
+
+// Export mod functions
+module.exports = {
+    onModLoad,
+    onModUnload
+};
+`,
+                language: 'javascript'
+            },
+            'mod.json': {
+                content: `{
+    "name": "example_mod",
+    "displayName": "Example Mod",
+    "version": "1.0.0",
+    "author": "Strata Developer",
+    "description": "A basic example mod for Strata: Primordial",
+    
+    "strataVersion": ">=0.2.0",
+    
+    "main": "mod.js",
+    
+    "permissions": [
+        "events",
+        "player",
+        "world",
+        "config"
+    ],
+    
+    "settings": {
+        "debug": false,
+        "logLevel": "info"
+    },
+    
+    "dependencies": [],
+    
+    "tags": [
+        "example",
+        "template",
+        "beginner"
+    ],
+    
+    "icon": "icon.png",
+    "screenshot": "screenshot.png"
+}
+`,
+                language: 'json'
+            }
+        };
+        
+        let editor = null;
+        let currentFile = 'mod.js';
+        let minimapEnabled = true;
+        let wordWrapEnabled = false;
+        
+        // ── Initialize Monaco Editor ──
+        require.config({ 
+            paths: { 
+                'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs' 
+            }
+        });
+        
+        require(['vs/editor/editor.main'], function() {
+            // Define custom dark theme
+            monaco.editor.defineTheme('strata-dark', {
+                base: 'vs-dark',
+                inherit: true,
+                rules: [
+                    { token: 'comment', foreground: '6A9955', fontStyle: 'italic' },
+                    { token: 'keyword', foreground: '569CD6' },
+                    { token: 'string', foreground: 'CE9178' },
+                    { token: 'number', foreground: 'B5CEA8' },
+                    { token: 'type', foreground: '4EC9B0' },
+                    { token: 'function', foreground: 'DCDCAA' },
+                    { token: 'variable', foreground: '9CDCFE' },
+                    { token: 'constant', foreground: '4FC1FF' },
+                ],
+                colors: {
+                    'editor.background': '#1e1e1e',
+                    'editor.foreground': '#d4d4d4',
+                    'editorLineNumber.foreground': '#858585',
+                    'editorLineNumber.activeForeground': '#c6c6c6',
+                    'editor.selectionBackground': '#264f78',
+                    'editor.lineHighlightBackground': '#2a2d2e',
+                    'editorCursor.foreground': '#aeafad',
+                    'editorWhitespace.foreground': '#3b3b3b',
+                    'editorIndentGuide.background': '#404040',
+                    'editorIndentGuide.activeBackground': '#707070',
+                }
+            });
+            
+            // Create editor instance
+            editor = monaco.editor.create(document.getElementById('editor'), {
+                value: files[currentFile].content,
+                language: files[currentFile].language,
+                theme: 'strata-dark',
+                automaticLayout: true,
+                minimap: {
+                    enabled: minimapEnabled,
+                    maxColumn: 80,
+                    renderCharacters: false
+                },
+                fontSize: 14,
+                fontFamily: "'Cascadia Code', 'Consolas', 'Courier New', monospace",
+                fontLigatures: true,
+                lineNumbers: 'on',
+                renderLineHighlight: 'line',
+                scrollBeyondLastLine: true,
+                smoothScrolling: true,
+                cursorBlinking: 'smooth',
+                cursorSmoothCaretAnimation: 'on',
+                bracketPairColorization: {
+                    enabled: true
+                },
+                guides: {
+                    bracketPairs: true,
+                    indentation: true
+                },
+                suggest: {
+                    showKeywords: true,
+                    showSnippets: true
+                },
+                wordWrap: wordWrapEnabled ? 'on' : 'off',
+                tabSize: 4,
+                insertSpaces: true
+            });
+            
+            // Update cursor position display
+            editor.onDidChangeCursorPosition((e) => {
+                document.getElementById('cursor-position').textContent = 
+                    `Ln ${e.position.lineNumber}, Col ${e.position.column}`;
+            });
+            
+            // Hide loading overlay
+            document.getElementById('loading').style.display = 'none';
+            
+            logToTerminal('Editor ready');
+        });
+        
+        // ── File Operations ──
+        
+        function switchFile(filename) {
+            if (!files[filename]) return;
+            
+            // Save current file content
+            files[currentFile].content = editor.getValue();
+            
+            // Switch to new file
+            currentFile = filename;
+            
+            // Update editor
+            const model = monaco.editor.createModel(
+                files[filename].content,
+                files[filename].language
+            );
+            editor.setModel(model);
+            
+            // Update UI
+            document.getElementById('file-path').textContent = `mods/example_mod/${filename}`;
+            document.getElementById('language-mode').textContent = 
+                files[filename].language === 'javascript' ? 'JavaScript' : 'JSON';
+            
+            // Update active tab
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.file === filename);
+            });
+            
+            // Update active file in sidebar
+            document.querySelectorAll('.file-tree-item').forEach(item => {
+                if (item.dataset.file) {
+                    item.classList.toggle('active', item.dataset.file === filename);
+                }
+            });
+            
+            logToTerminal(`Opened ${filename}`);
+        }
+        
+        function saveFile() {
+            // Save current content
+            files[currentFile].content = editor.getValue();
+            
+            // Call Kotlin save handler
+            if (window.strataSaveFile) {
+                window.strataSaveFile(currentFile, files[currentFile].content);
+            }
+            
+            logToTerminal(`Saved ${currentFile}`);
+        }
+        
+        // ── Editor Operations ──
+        
+        function undo() {
+            editor.trigger('toolbar', 'undo');
+        }
+        
+        function redo() {
+            editor.trigger('toolbar', 'redo');
+        }
+        
+        function cutSelection() {
+            editor.trigger('toolbar', 'editor.action.clipboardCutAction');
+        }
+        
+        function copySelection() {
+            editor.trigger('toolbar', 'editor.action.clipboardCopyAction');
+        }
+        
+        function pasteClipboard() {
+            editor.trigger('toolbar', 'editor.action.clipboardPasteAction');
+        }
+        
+        function findReplace() {
+            editor.trigger('toolbar', 'editor.action.startFindReplaceAction');
+        }
+        
+        function formatCode() {
+            editor.getAction('editor.action.formatDocument').run();
+            logToTerminal('Code formatted');
+        }
+        
+        function toggleMinimap() {
+            minimapEnabled = !minimapEnabled;
+            editor.updateOptions({ minimap: { enabled: minimapEnabled } });
+            logToTerminal(`Minimap ${minimapEnabled ? 'enabled' : 'disabled'}`);
+        }
+        
+        function toggleWordWrap() {
+            wordWrapEnabled = !wordWrapEnabled;
+            editor.updateOptions({ wordWrap: wordWrapEnabled ? 'on' : 'off' });
+            logToTerminal(`Word wrap ${wordWrapEnabled ? 'enabled' : 'disabled'}`);
+        }
+        
+        // ── Terminal Output ──
+        
+        function logToTerminal(message) {
+            const terminal = document.getElementById('terminal-output');
+            const timestamp = new Date().toISOString().replace('T', ' ').substr(0, 19);
+            terminal.innerHTML += `\n[${timestamp}] ${message}`;
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+        
+        // ── Event Listeners ──
+        
+        // Tab clicks
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                switchFile(tab.dataset.file);
+            });
+        });
+        
+        // Sidebar file clicks
+        document.querySelectorAll('.file-tree-item[data-file]').forEach(item => {
+            item.addEventListener('click', () => {
+                switchFile(item.dataset.file);
+            });
+        });
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                switch (e.key.toLowerCase()) {
+                    case 's':
+                        e.preventDefault();
+                        saveFile();
+                        break;
+                }
+            }
+        });
+        
+        // ── Kotlin Bridge ──
+        
+        // These functions are called from Kotlin via webview.execute()
+        window.strataGetEditorContent = function() {
+            files[currentFile].content = editor.getValue();
+            return JSON.stringify(files);
+        };
+        
+        window.strataSetEditorContent = function(filename, content) {
+            if (files[filename]) {
+                files[filename].content = content;
+                if (currentFile === filename) {
+                    editor.setValue(content);
+                }
+            }
+        };
+        
+        window.strataGetCurrentFile = function() {
+            return currentFile;
+        };
+        
+        window.strataGetTheme = function() {
+            return editor.getOption(monaco.editor.EditorOption.theme);
+        };
+    </script>
+</body>
+</html>

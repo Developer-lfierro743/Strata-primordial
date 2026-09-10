@@ -1,0 +1,20 @@
+{
+  "kind": "webpage_snapshot",
+  "url": "https://updatecrazy.com/minecraft-update-3-45-patch-notes-bedrock-26-40/",
+  "final_url": "https://updatecrazy.com/minecraft-update-3-45-patch-notes-bedrock-26-40/",
+  "status": 200,
+  "read_status": "blocked",
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-08-05T00:16:36.044883200+00:00",
+  "title": "Minecraft Update 3.45 Patch Notes (Bedrock 26.40) | New Features",
+  "description": "Minecraft update 3.45 (Bedrock 26.40) released on PS4, PC and Xbox One. Read the official Minecraft 3.45 patch notes.",
+  "site_name": "UpdateCrazy",
+  "published_at": "2026-08-04T16:34:32+00:00",
+  "source_type": "unknown",
+  "text": "",
+  "quote_candidates": [],
+  "word_count": 0,
+  "truncated": false,
+  "blocked": true,
+  "source": "direct_http"
+}

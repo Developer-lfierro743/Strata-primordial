@@ -1,0 +1,20 @@
+{
+  "kind": "webpage_snapshot",
+  "url": "https://www.gamespot.com/articles/hytale-launches-today-in-early-access/1100-6537338/",
+  "final_url": "https://www.gamespot.com/articles/hytale-launches-today-in-early-access/1100-6537338/",
+  "status": 403,
+  "read_status": "blocked",
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-08-05T00:16:34.840832200+00:00",
+  "title": "Just a moment...",
+  "description": "",
+  "site_name": null,
+  "published_at": null,
+  "source_type": "unknown",
+  "text": "",
+  "quote_candidates": [],
+  "word_count": 0,
+  "truncated": false,
+  "blocked": true,
+  "source": "direct_http"
+}

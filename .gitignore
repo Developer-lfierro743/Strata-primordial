@@ -1,36 +1,30 @@
-# Build outputs
-build/
+# Gradle
 .gradle/
+build/
 !gradle/wrapper/gradle-wrapper.jar
 
-# IDE
+# IntelliJ
 .idea/
 *.iml
-.vscode/
-*.swp
+*.iws
+*.ipr
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Local config
-local.properties
+# Generated native interop
+src/nativeInterop/cinterop/*.cmake
+src/nativeInterop/cinterop/generated/
 
-# Hidden/system folders
-.freebuff/
-.agnes/
-.kotlin/
-.gradle/
+# Build outputs
+dist/
 
-# Kotlin/Native
-*.klib
-*.dylib
-*.so
-*.dll
+# Secrets
+*.keystore
+*.p12
+*.jks
 
-# THE SAUCE - Proprietary game formula (NEVER COMMIT)
-superformula*/
-
-# Keep these
-!gradlew
-!gradlew.bat
+# Logs
+*.log
+logs/

@@ -1,0 +1,66 @@
+Note:the protocols will be custom made instead of following own Mojang property auth schema they used for Minecraft(which they use AD azure directory) and other stuff to make the game under mircosoft
+Beta testing group/STRESS Testing group:(youtubers,etc) including from the trend 100 players simulations of youtube and minecraft community and mix of english and spanish and this my list!:
+@MindofNeo
+@minecraft Curios(IGN:Ledgy)(too late of the party of 100 players simulations)
+@Sword4000 english(main) and spanish(voice is weird so it uses ai or professional voice dubbing) channel
+@nyxlunarii(English)
+@Pharolen(English)
+@bobicraft(Spanish)
+AND MANY MORE CREATORS!!
+some are the same stuff but some are new so merge them together
+Make a a research this into a to mke a whats are thr official sources,etc
+Look those 100 players simulates <whatever here> this turned into a trend
+Here's the following YouTubers and maybe new YouTubers will join those (the trend)(AKA in Minecraft)
+YouTube handles will be used
+Plus if possible expand the list who's part of the trend its other stuff what they did on thier YouTube channel before when they made the 100 players simulates<whatever here>
+Sword4000
+Nyxlunarii
+knappYT
+Sharkilz(almost)
+Those playlists are in order(Sharkilz)
+First playlist: School smp: Official playlist(In order)
+https://youtube.com/playlist?list=PLgkqcdSE8XijyiJMV7zk58vx4Ls2LuM07&si=yj_gg9T1cHKYddmk
+Second Playlist:
+Minecraft movies: Official playlist
+https://youtube.com/playlist?list=PLgkqcdSE8Xij7Cued5M3wwTGov35pkt7j&si=BL2mTedwpUAYPO9T
+Third playlist: Simulations official playlist(in order)
+https://youtube.com/playlist?list=PLgkqcdSE8XigcgGrjt8Js72tmdeAoIM9r&si=4qwg1UqdNdz2Pknl
+Fourth playlist:
+Infuse Smp: official Playlist(in order)
+https://youtube.com/playlist?list=PLgkqcdSE8XigCCey78bpqtOgXGjae5tjB&si=QzHnwzchfAYU1PhM
+Minecraft curios(ign:Ledgy plus he does skits/roleplay for Minecraft)(too late to the party)
+I am part of his discord server(main)/Lunar events discord server(the way behind of the trend)
+So heres a tiny snippet:
+Hello everyone! Most of you do not know who I am so I will quickly introduce myself, I am Yxll0w and I have been doing recordings with Ledgy for a little while, I am an event host myself and also experienced in making them so… me and Ledgy have had a chat about creating future events that YOU can play!
+These events will be a wide range from: Hunger Games, Battle Royal, Civilization, Purges and many other games for you to enjoy all with custom ability's and weapons to unlock.
+If you haven't had any experience with events I HIGHLY recommend to go watch videos from creators like Sword4000 or MindOfNeo as that sums up what events you can expect to play in!
+Why not make a designed event which in reality its a full event server is a testing ground for  Infrastructure
+To make this work and stress test it
+During the event it's a Time limited only if possible it automatically defaults into normal mode(vanilla mode)
+A default sets to normal mode in it has all the same mechanics as Minecraft
+But better
+Plus they use papermc,or purpur or fabric,etc for its server operations for the events(which sometimes are provided by hosting companies(pine hosting,apex,etc)
+This wiill be my own official  Server Software(will be known or the very short name  Server Software(designed only with the Game)
+This is going to be a unified version of the game this means all devices and yes this includes web browsers going be joining into The fray
+The main three operating systems(Windows 10/11, Mac OS,Linux,etc)
+And maybe we will build a style-like pojavlauncher(for Android and ios)(maybe will skip the app stores(only way is sideloading it)
+For the web i have a plan using Eaglercraft technology only not the Minecraft code(yep they did the unthinkable make Minecraft run on a web browser aka Eaglercraft (which was very popular until dmca takedown request by mojang/mircosoft and tracer ai(they have a contract with Microsoft)(to stop bad actors from using Minecraft own copyrighted stuff)
+Which they(tracer ai on behalf of Microsoft) filed it in November 2022(the dmca takedown request)
+They used Teavm(a AOT compiler)
+support for Webgpu support
+For my game will be going be using WASM
+Java bytecode ---->Wasm or JavaScript
+My game is all original!
+(Minecraft code or its assets are not found from mojang/mircosoft or the tracer ai they keep searching if a tiny speck of copyright infringement yikes its game over!)
+Plus as extra will be supporting all those protocols (yep those are part of Eaglercraft core its protocols(the web version uses 2 types technologies (websocket secure(wss://) and ws(websocket(aka insecure)(ws://) thats if the server runs a alongside plugin to allow Eaglercraft clients(aka join Minecraft java edition servers(offline-mode=false)
+Those will be part of the game wss:// and ws://
+Tcp/ip
+Udp
+Webrtc(with lan to join from anywhere from the world universal LAN(only you need a code)
+Which they require other stuff including making its relays,etc and maybe voice chat will be integrated as part of the  Experience(except not in the desktop version) and breaking through the firewalls(including schools ones)
+Voice chat will be available on the web browser(version)
+Using its newer technologies including webgpu and maybe I will take time to rewrite the whole LWJGL 3 dependencies to be supported on the web version it will take me months and to rewrite it to be supported in teavm or use a other way to make it work or using eaglercraft-1_8-workspace(only the glue how it makes it work with the web not steal minecraft own code that made eaglercraft(legal trouble with the mojang/mircosoft with tracer ai)
+which in the same technology I know what I'm talking about.
+my goal with this its Optimized  to i3-5005U with a integrated Graphics(IGPU Intel(R) HD Graphics 5500) to Threadripper with RTX cards  and that works with Teavm(WASM-GC)
+and school chromebooks uses Celeron cpus which are budget friendly for schools,etc.
+and they use bad igpus(Intel® UHD Graphics) in celerons
