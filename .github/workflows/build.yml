@@ -33,7 +33,10 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libvulkan-dev cmake ninja-build pkg-config
+          sudo apt-get install -y libvulkan-dev cmake ninja-build pkg-config \
+            libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxinerama-dev \
+            libxi-dev libxxf86vm-dev libxss-dev libwayland-dev libxkbcommon-dev \
+            libudev-dev libdrm-dev libgbm-dev
           # Build SDL3 from source (not in Ubuntu repos yet)
           git clone --branch release-3.2.6 --depth 1 https://github.com/libsdl-org/SDL.git /tmp/SDL
           cmake -S /tmp/SDL -B /tmp/SDL/build -DCMAKE_BUILD_TYPE=Release -DSDL_SHARED=ON -DSDL_STATIC=OFF
@@ -83,7 +86,10 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libvulkan-dev cmake ninja-build pkg-config
+          sudo apt-get install -y libvulkan-dev cmake ninja-build pkg-config \
+            libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxinerama-dev \
+            libxi-dev libxxf86vm-dev libxss-dev libwayland-dev libxkbcommon-dev \
+            libudev-dev libdrm-dev libgbm-dev
           # Build SDL3 from source (not in Ubuntu repos yet)
           git clone --branch release-3.2.6 --depth 1 https://github.com/libsdl-org/SDL.git /tmp/SDL
           cmake -S /tmp/SDL -B /tmp/SDL/build -DCMAKE_BUILD_TYPE=Release -DSDL_SHARED=ON -DSDL_STATIC=OFF
