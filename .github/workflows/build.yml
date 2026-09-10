@@ -37,6 +37,7 @@ jobs:
           mkdir -p /tmp/SDL/build && cd /tmp/SDL/build
           cmake .. -DCMAKE_BUILD_TYPE=Release \
             -DSDL_SHARED=ON -DSDL_STATIC=OFF \
+            -DSDL_X11=OFF -DSDL_WAYLAND=OFF -DSDL_UNIX_CONSOLE=ON \
             -DCMAKE_INSTALL_PREFIX=/usr/local
           cmake --build . --parallel $(nproc)
           sudo cmake --install .
