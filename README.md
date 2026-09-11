@@ -40,15 +40,15 @@ This is **NOT** a Minecraft mod. This is a **standalone original game**.
 
 ## 🖥️ Target Platforms
 
-| Platform | Target | Status |
-|----------|--------|--------|
-| Windows x64 | `desktop` (mingwX64) | 🔧 CI builds |
-| Linux x64 | `linuxX64` | 🔧 CI builds |
+| Platform | Target | CI |
+|----------|--------|-----|
+| Windows x64 | `desktop` (mingwX64) | Local only |
+| Linux x64 | `linuxX64` | ✅ CI builds |
 | Android | Future | 📋 Planned |
 | iOS | Future | 📋 Planned |
 | macOS | Future | 📋 Planned |
 
-Both desktop targets build via **GitHub Actions CI** — no local x86_64 machine required.
+Linux x64 builds via **GitHub Actions CI** on every push to `master`.
 
 ---
 
@@ -77,9 +77,9 @@ Both desktop targets build via **GitHub Actions CI** — no local x86_64 machine
 ```
 
 ### CI/CD
-GitHub Actions builds both targets on every push to `master`:
-- `ubuntu-latest` → linuxX64
-- `windows-latest` → desktop (mingwX64)
+GitHub Actions builds `linuxX64` on every push to `master`:
+- `ubuntu-latest` → linuxX64 (SDL3 built from source, X11 + Wayland enabled)
+- Windows (`desktop`) builds locally on your machine
 
 ---
 

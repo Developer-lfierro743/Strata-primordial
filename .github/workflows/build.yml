@@ -7,10 +7,15 @@ on:
     branches: [master, main]
   workflow_dispatch:
 
+env:
+  GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4096M -Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.caching=true"
+
 jobs:
   build-linux-x64:
     name: Build linuxX64
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+
     steps:
       - uses: actions/checkout@v4
 
@@ -22,21 +27,47 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: false
+          gradle-home-cache-includes: |
+            caches
+            notifications
+            build-cache-1
 
-      - name: Install dependencies
+      - name: Cache Kotlin/Native toolchain
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: ${{ runner.os }}-konan-${{ hashFiles('gradle.properties', 'gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-konan-
+
+      - name: Install Linux SDL3 build deps
         run: |
           sudo apt-get update
-          sudo apt-get install -y cmake ninja-build pkg-config \
-            libc6-dev linux-libc-dev \
+          sudo apt-get install -y --no-install-recommends \
+            cmake ninja-build pkg-config \
             libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxinerama-dev \
-            libxi-dev libxxf86vm-dev libxss-dev libwayland-dev libxkbcommon-dev \
-            libudev-dev libdrm-dev libgbm-dev libvulkan-dev
+            libxi-dev libxxf86vm-dev libxss-dev libxtst-dev \
+            libwayland-dev wayland-protocols libxkbcommon-dev libxkbcommon-x11-dev \
+            libdrm-dev libgbm-dev libegl1-mesa-dev libgles2-mesa-dev \
+            libudev-dev libasound2-dev libpulse-dev libdbus-1-dev \
+            libvulkan-dev
+
+      - name: Cache SDL3 build
+        id: cache-sdl
+        uses: actions/cache@v4
+        with:
+          path: /tmp/SDL
+          key: sdl3-${{ runner.os }}-${{ hashFiles('.github/workflows/build.yml') }}
 
       - name: Build SDL3 from source
+        if: steps.cache-sdl.outputs.cache-hit != 'true'
         run: |
           git clone --branch release-3.2.6 --depth 1 https://github.com/libsdl-org/SDL.git /tmp/SDL
           mkdir -p /tmp/SDL/build && cd /tmp/SDL/build
-          cmake .. -DCMAKE_BUILD_TYPE=Release \
+          cmake .. -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
             -DSDL_SHARED=ON -DSDL_STATIC=OFF \
             -DCMAKE_INSTALL_PREFIX=/usr/local
           cmake --build . --parallel $(nproc)
@@ -44,10 +75,13 @@ jobs:
           sudo ldconfig
 
       - name: Build linuxX64
-        run: ./gradlew :linkDebugExecutableLinuxX64
+        run: ./gradlew :linkDebugExecutableLinuxX64 --stacktrace
 
       - name: Upload linuxX64 binary
         uses: actions/upload-artifact@v4
         with:
           name: strata-linux-x64
           path: build/bin/linuxX64/debugExecutable/
+
+      - name: Run tests
+        run: ./gradlew :linuxX64Test --stacktrace
