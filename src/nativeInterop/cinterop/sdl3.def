@@ -1,2 +1,5 @@
 headers = strata_sdl3_wrapper.h
 package = strata.sdl3
+
+compilerOpts = -I/usr/local/include -I/usr/include
+linkerOpts = -L/usr/local/lib -lSDL3 -L/usr/lib/x86_64-linux-gnu -lvulkan -lm -lpthread

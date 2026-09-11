@@ -76,12 +76,6 @@ kotlin {
                     "-I$vkInclude",
                     "-I$vmaInclude"
                 )
-                linkerOpts(
-                    "-L$sdlLib", "-lSDL3",
-                    "-L$vkLib", "-lvulkan",
-                    "-L$baseInterop", "-l:libvma.a",
-                    "-lm", "-lpthread"
-                )
             }
         }
     }
