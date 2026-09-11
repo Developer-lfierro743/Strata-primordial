@@ -67,12 +67,32 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Install SDL3 (vcpkg)
+      - name: Install SDL3 + Vulkan SDK
         run: |
+          # Install Vulkan SDK
+          $vulkanSdkUrl = "https://sdk.lunarg.com/sdk/download/1.4.357.0/windows/VulkanSDK-1.4.357.0-Installer.exe"
+          Invoke-WebRequest -Uri $vulkanSdkUrl -OutFile "VulkanSDK-Installer.exe"
+          Start-Process -FilePath ".\VulkanSDK-Installer.exe" -ArgumentList "--accept-licenses --default-answer --confirm-command install" -Wait
+          $env:VULKAN_SDK = "C:\VulkanSDK\1.4.357.0"
+          Write-Output "VULKAN_SDK=$env:VULKAN_SDK" >> $env:GITHUB_ENV
+          
+          # Install SDL3 via vcpkg
           vcpkg install sdl3:x64-windows
+          
+          # Set SDL3 paths
+          $env:SDL3_INCLUDE = "C:\vcpkg\installed\x64-windows\include"
+          $env:SDL3_LIB = "C:\vcpkg\installed\x64-windows\lib"
+          Write-Output "SDL3_INCLUDE=$env:SDL3_INCLUDE" >> $env:GITHUB_ENV
+          Write-Output "SDL3_LIB=$env:SDL3_LIB" >> $env:GITHUB_ENV
 
       - name: Build Windows
         run: ./gradlew :linkDebugExecutableDesktop
+        env:
+          SDL3_INCLUDE: ${{ env.SDL3_INCLUDE }}
+          SDL3_LIB: ${{ env.SDL3_LIB }}
+          VULKAN_INCLUDE: ${{ env.VULKAN_SDK }}\Include
+          VULKAN_LIB: ${{ env.VULKAN_SDK }}\Lib
+          VMA_INCLUDE: ${{ github.workspace }}\src\nativeInterop\cinterop
 
       - name: Upload Windows binary
         uses: actions/upload-artifact@v4

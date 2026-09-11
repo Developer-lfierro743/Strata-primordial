@@ -35,18 +35,25 @@ kotlin {
     targets.named<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>("desktop") {
         compilations.getByName("main").cinterops {
             getByName("sdl3") {
+                val sdlInclude = System.getenv("SDL3_INCLUDE") ?: "C:/Users/luis/Dev/SDL-main/include"
+                val sdlLib = System.getenv("SDL3_LIB") ?: "C:/Users/luis/Dev/SDL-main/build-vs/Release"
+                val vkInclude = System.getenv("VULKAN_INCLUDE") ?: "C:/VulkanSDK/1.4.357.0/Include"
+                val vkLib = System.getenv("VULKAN_LIB") ?: "C:/VulkanSDK/1.4.357.0/Lib"
+                val vmaInclude = System.getenv("VMA_INCLUDE") ?: "C:/Users/luis/Dev/VMA-master/include"
+                val baseInterop = project.file("src/nativeInterop/cinterop")
+
                 compilerOpts(
-                    "-IC:/Users/luis/Dev/SDL-main/include",
-                    "-IC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop",
-                    "-IC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop/strata3d",
-                    "-IC:/VulkanSDK/1.4.357.0/Include",
-                    "-IC:/Users/luis/Dev/VMA-master/include",
+                    "-I$sdlInclude",
+                    "-I$baseInterop",
+                    "-I$baseInterop/strata3d",
+                    "-I$vkInclude",
+                    "-I$vmaInclude",
                     "-msse4.2"
                 )
                 linkerOpts(
-                    "-LC:/Users/luis/Dev/SDL-main/build-vs/Release", "-lSDL3",
-                    "-LC:/VulkanSDK/1.4.357.0/Lib", "-lvulkan-1",
-                    "-LC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop", "-l:libvma.a"
+                    "-L$sdlLib", "-lSDL3",
+                    "-L$vkLib", "-lvulkan-1",
+                    "-L$baseInterop", "-l:libvma.a"
                 )
             }
         }
