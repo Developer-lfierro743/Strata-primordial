@@ -38,7 +38,6 @@ jobs:
           mkdir -p /tmp/SDL/build && cd /tmp/SDL/build
           cmake .. -DCMAKE_BUILD_TYPE=Release \
             -DSDL_SHARED=ON -DSDL_STATIC=OFF \
-            -DSDL_X11=OFF -DSDL_WAYLAND=OFF -DSDL_UNIX_CONSOLE=ON \
             -DCMAKE_INSTALL_PREFIX=/usr/local
           cmake --build . --parallel $(nproc)
           sudo cmake --install .
@@ -71,9 +70,17 @@ jobs:
       - name: Install cross-compile dependencies
         run: |
           sudo apt-get update
+          sudo dpkg --add-architecture arm64
+          sudo apt-get update
           sudo apt-get install -y cmake ninja-build pkg-config \
             gcc-aarch64-linux-gnu g++-aarch64-linux-gnu \
-            libvulkan-dev
+            libc6-dev:arm64 linux-libc-dev:arm64 \
+            libx11-dev:arm64 libxext-dev:arm64 libxrandr-dev:arm64 \
+            libxcursor-dev:arm64 libxinerama-dev:arm64 \
+            libxi-dev:arm64 libxxf86vm-dev:arm64 libxss-dev:arm64 \
+            libwayland-dev:arm64 libxkbcommon-dev:arm64 \
+            libudev-dev:arm64 libdrm-dev:arm64 libgbm-dev:arm64 \
+            libvulkan-dev:arm64
 
       - name: Build SDL3 for ARM64
         run: |
@@ -84,8 +91,7 @@ jobs:
             -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
             -DCMAKE_SYSTEM_NAME=Linux \
             -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
-            -DSDL_SHARED=ON -DSDL_STATIC=OFF \
-            -DSDL_X11=OFF -DSDL_WAYLAND=OFF -DSDL_UNIX_CONSOLE=ON \
+            -DSDL_X11=ON -DSDL_WAYLAND=ON \
             -DCMAKE_INSTALL_PREFIX=/usr/aarch64-linux-gnu
           cmake --build . --parallel $(nproc)
           sudo cmake --install .
