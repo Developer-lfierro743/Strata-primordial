@@ -1,6 +1,5 @@
 plugins {
     kotlin("multiplatform") version "2.4.0"
-    id("com.android.library") version "8.5.2" apply false
 }
 
 kotlin {
@@ -29,17 +28,10 @@ kotlin {
             val sdl3 by creating {
                 definitionFile.set(project.file("src/nativeInterop/cinterop/sdl3.def"))
             }
-            val cimgui by creating {
-                definitionFile.set(project.file("src/nativeInterop/cinterop/cimgui.def"))
-            }
-            val webview by creating {
-                definitionFile.set(project.file("src/nativeInterop/cinterop/webview.def"))
-            }
         }
         binaries.executable { entryPoint = "strata.main" }
     }
 
-    // Desktop (Windows) - uses local dev paths
     targets.named<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>("desktop") {
         compilations.getByName("main").cinterops {
             getByName("sdl3") {
@@ -57,23 +49,9 @@ kotlin {
                     "-LC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop", "-l:libvma.a"
                 )
             }
-            getByName("cimgui") {
-                compilerOpts(
-                    "-IC:/Users/luis/Dev/Strata/cimgui",
-                    "-IC:/Users/luis/Dev/Strata/cimgui/imgui",
-                    "-IC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop",
-                    "-IC:/VulkanSDK/1.4.357.0/Include"
-                )
-                linkerOpts("-LC:/Users/luis/Dev/Strata/cimgui/build", "-lcimgui")
-            }
-            getByName("webview") {
-                compilerOpts("-IC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop")
-                linkerOpts("-LC:/Users/luis/Dev/Strata/src/nativeInterop/cinterop", "-lstrata_webview")
-            }
         }
     }
 
-    // Linux x64 - uses system paths (CI builds SDL3 from source)
     targets.named<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>("linuxX64") {
         compilations.getByName("main").cinterops {
             getByName("sdl3") {
@@ -98,17 +76,8 @@ kotlin {
                     "-lm", "-lpthread"
                 )
             }
-            getByName("cimgui") {
-                compilerOpts("-I/usr/include", "-I${project.file("src/nativeInterop/cinterop")}")
-                linkerOpts("-L/usr/lib/x86_64-linux-gnu", "-lcimgui")
-            }
-            getByName("webview") {
-                compilerOpts("-I${project.file("src/nativeInterop/cinterop")}")
-                linkerOpts("-L/usr/lib/x86_64-linux-gnu", "-lstrata_webview")
-            }
         }
     }
-
 }
 
 tasks.register<Copy>("packageDist") {
@@ -119,18 +88,12 @@ tasks.register<Copy>("packageDist") {
     val distDir = layout.buildDirectory.dir("dist/strata")
     val exeDir = layout.buildDirectory.dir("bin/desktop/releaseExecutable")
     val sdlDll = file("C:/Users/luis/Dev/SDL-main/build-vs/Release/SDL3.dll")
-    val webviewDll = file("C:/Users/luis/Dev/Strata/src/nativeInterop/cinterop/strata_webview.dll")
 
     into(distDir)
     from(exeDir) { include("strata-prototype.exe") }
     from(sdlDll)
-    from(webviewDll) { onlyIf { webviewDll.exists() } }
 
     doLast {
-        if (webviewDll.exists()) {
-            println("Packaged Strata distributable with WebView in ${distDir.get().asFile}")
-        } else {
-            println("Packaged Strata distributable (no WebView DLL found) in ${distDir.get().asFile}")
-        }
+        println("Packaged Strata distributable in ${distDir.get().asFile}")
     }
 }

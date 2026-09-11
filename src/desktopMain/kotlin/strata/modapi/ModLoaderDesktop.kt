@@ -1,7 +1,6 @@
 package strata.modapi
 
 import platform.posix.printf
-import strata.cimgui.StrataImGui
 import strata.security.copyright.ModScanner
 import strata.security.copyright.ModSafety
 import strata.security.copyright.ThreatLevel

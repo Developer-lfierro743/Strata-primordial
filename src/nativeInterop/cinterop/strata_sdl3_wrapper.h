@@ -12,13 +12,6 @@
 /* Strata3D — Proprietary Rendering Library */
 #include "strata3d/strata3d.h"
 
-/* ── ImGui render pass integration ──
- * These functions are defined in strata_imgui_impl.cpp (cimgui cinterop)
- * and called from strata_render_frame() to render ImGui inside the Vulkan
- * render pass, after the UI overlay draw. */
-extern void strata_imgui_render_to(void* commandBuffer);
-extern int strata_imgui_has_draw_data(void);
-
 /* ────────────────────────────────────────────────────────────
    SPIR-V Shader Bytecode (compiled from GLSL 450)
    Vertex shader now uses push constants for MVP matrix
