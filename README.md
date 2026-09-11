@@ -44,12 +44,11 @@ This is **NOT** a Minecraft mod. This is a **standalone original game**.
 |----------|--------|--------|
 | Windows x64 | `desktop` (mingwX64) | 🔧 CI builds |
 | Linux x64 | `linuxX64` | 🔧 CI builds |
-| Linux ARM64 | `linuxArm64` | 🔧 CI builds |
 | Android | Future | 📋 Planned |
 | iOS | Future | 📋 Planned |
 | macOS | Future | 📋 Planned |
 
-All 3 desktop targets build via **GitHub Actions CI** — no local x86_64 machine required.
+Both desktop targets build via **GitHub Actions CI** — no local x86_64 machine required.
 
 ---
 
@@ -78,8 +77,8 @@ All 3 desktop targets build via **GitHub Actions CI** — no local x86_64 machin
 ```
 
 ### CI/CD
-GitHub Actions builds all 3 targets on every push to `master`:
-- `ubuntu-latest` → linuxX64, linuxArm64
+GitHub Actions builds both targets on every push to `master`:
+- `ubuntu-latest` → linuxX64
 - `windows-latest` → desktop (mingwX64)
 
 ---
@@ -248,8 +247,6 @@ Security is not an afterthought. It's the kernel of the game.
 ### 📋 Phase 4: Scale Up
 - [ ] Android target (linuxArm64 base)
 - [ ] iOS target
-- [ ] macOS target
-- [ ] Console ports (Xbox, PlayStation, Switch)
 
 ### 📋 Phase 5: Polish
 - [ ] THE PURGE event system

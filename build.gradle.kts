@@ -6,7 +6,6 @@ plugins {
 kotlin {
     mingwX64("desktop")
     linuxX64("linuxX64")
-    linuxArm64("linuxArm64")
 
     sourceSets {
         val commonMain by getting {
@@ -110,41 +109,6 @@ kotlin {
         }
     }
 
-    // Linux ARM64 - cross-compile (CI builds SDL3 for aarch64)
-    targets.named<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>("linuxArm64") {
-        compilations.getByName("main").cinterops {
-            getByName("sdl3") {
-                val sdlInclude = System.getenv("SDL3_INCLUDE") ?: "/usr/aarch64-linux-gnu/include"
-                val sdlLib = System.getenv("SDL3_LIB") ?: "/usr/aarch64-linux-gnu/lib"
-                val vkInclude = System.getenv("VULKAN_INCLUDE") ?: "/usr/include"
-                val vkLib = System.getenv("VULKAN_LIB") ?: "/usr/aarch64-linux-gnu/lib"
-                val vmaInclude = System.getenv("VMA_INCLUDE") ?: "/usr/include"
-                val baseInterop = project.file("src/nativeInterop/cinterop")
-
-                compilerOpts(
-                    "-I$sdlInclude",
-                    "-I$baseInterop",
-                    "-I$baseInterop/strata3d",
-                    "-I$vkInclude",
-                    "-I$vmaInclude"
-                )
-                linkerOpts(
-                    "-L$sdlLib", "-lSDL3",
-                    "-L$vkLib", "-lvulkan",
-                    "-L$baseInterop", "-l:libvma.a",
-                    "-lm", "-lpthread"
-                )
-            }
-            getByName("cimgui") {
-                compilerOpts("-I/usr/include", "-I${project.file("src/nativeInterop/cinterop")}")
-                linkerOpts("-L/usr/lib/aarch64-linux-gnu", "-lcimgui")
-            }
-            getByName("webview") {
-                compilerOpts("-I${project.file("src/nativeInterop/cinterop")}")
-                linkerOpts("-L/usr/lib/aarch64-linux-gnu", "-lstrata_webview")
-            }
-        }
-    }
 }
 
 tasks.register<Copy>("packageDist") {
